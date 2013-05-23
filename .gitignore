@@ -1,6 +1,8 @@
 .gradle/
 .idea/
 WereAllGonnaDie/build/
+
+# from https://github.com/gradle/gradle/blob/master/.gitignore
 *~
 .gradle
 /build
@@ -37,3 +39,12 @@ WereAllGonnaDie/build/
 /incoming-distributions
 .idea
 *.sublime-*
+
+# from github
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+

@@ -1,6 +1,7 @@
 package com.kodekoan.wereallgonnadie;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,12 +9,15 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener {
 
     private float mLastX, mLastY, mLastZ;
+    private float mMinX, mMinY, mMinZ;
+    private float mMaxX, mMaxY, mMaxZ;
 
     private boolean mInitialized;
 
@@ -34,6 +38,10 @@ public class MainActivity extends Activity implements SensorEventListener {
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    @Override
+    public void onConfigurationChanged (Configuration newConfig) {
+        // Change here your image
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,33 +74,47 @@ public class MainActivity extends Activity implements SensorEventListener {
         float z = event.values[2];
         if (!mInitialized) {
             mLastX = x;
+            mMaxX = mMinX = 0.0f;
             mLastY = y;
+            mMaxY = mMinY = 0.0f;
             mLastZ = z;
+            mMaxZ = mMinZ = 0.0f;
             tvX.setText("0.0");
             tvY.setText("0.0");
             tvZ.setText("0.0");
             mInitialized = true;
+            return;
+        }
+
+        float deltaX = Math.abs(mLastX - x);
+        float deltaY = Math.abs(mLastY - y);
+        float deltaZ = Math.abs(mLastZ - z);
+        if (deltaX < NOISE) deltaX = (float)0.0;
+        if (deltaY < NOISE) deltaY = (float)0.0;
+        if (deltaZ < NOISE) deltaZ = (float)0.0;
+        mLastX = x;
+        if (deltaX > mMaxX) mMaxX = deltaX;
+        if (deltaX < mMinX) mMinX = deltaX;
+
+        mLastY = y;
+        if (deltaY > mMaxY) mMaxY = deltaY;
+        if (deltaY < mMinY) mMinY = deltaY;
+
+        mLastZ = z;
+        if (deltaZ > mMaxZ) mMaxZ = deltaZ;
+        if (deltaZ < mMinZ) mMinZ = deltaZ;
+
+        tvX.setText(Float.toString(deltaX) + "(" + Float.toString(mMinX) + "-" + Float.toString(mMaxX) + ")");
+        tvY.setText(Float.toString(deltaY) + "(" + Float.toString(mMinY) + "-" + Float.toString(mMaxY) + ")");
+        tvZ.setText(Float.toString(deltaZ) + "(" + Float.toString(mMinZ) + "-" + Float.toString(mMaxZ) + ")");
+
+        iv.setVisibility(View.VISIBLE);
+        if (deltaX > deltaY) {
+            iv.setImageResource(R.drawable.horizontal);
+        } else if (deltaY > deltaX) {
+            iv.setImageResource(R.drawable.vertical);
         } else {
-            float deltaX = Math.abs(mLastX - x);
-            float deltaY = Math.abs(mLastY - y);
-            float deltaZ = Math.abs(mLastZ - z);
-            if (deltaX < NOISE) deltaX = (float)0.0;
-            if (deltaY < NOISE) deltaY = (float)0.0;
-            if (deltaZ < NOISE) deltaZ = (float)0.0;
-            mLastX = x;
-            mLastY = y;
-            mLastZ = z;
-            tvX.setText(Float.toString(deltaX));
-            tvY.setText(Float.toString(deltaY));
-            tvZ.setText(Float.toString(deltaZ));
-            iv.setVisibility(View.VISIBLE);
-            if (deltaX > deltaY) {
-                iv.setImageResource(R.drawable.horizontal);
-            } else if (deltaY > deltaX) {
-                iv.setImageResource(R.drawable.vertical);
-            } else {
-                iv.setVisibility(View.INVISIBLE);
-            }
+            iv.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -7,5 +7,6 @@
     </string>
     <string name="hello_world" >Hello world!
     </string>
+    <string name="inline_preferences">Inline Preferences</string>
 
 </resources>

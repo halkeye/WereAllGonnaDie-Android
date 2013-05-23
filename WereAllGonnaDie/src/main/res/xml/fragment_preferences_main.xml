@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="@string/inline_preferences">
+
+        <CheckBoxPreference
+                android:key="checkbox_preference"
+                android:title="checkbox title"
+                android:summary="checkbox summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="Launching Preferences">
+
+        <PreferenceScreen
+                android:title="Pref Screen Title">
+
+            <intent android:action="android.intent.action.ACTION_GET_CONTENT"
+                    android:data="audio/*" />
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>

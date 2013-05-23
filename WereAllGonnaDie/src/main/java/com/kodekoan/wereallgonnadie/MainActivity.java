@@ -1,6 +1,7 @@
 package com.kodekoan.wereallgonnadie;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +38,15 @@ public class MainActivity extends Activity implements SensorEventListener {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+        final Button button = (Button) findViewById(R.id.btn_preferences);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                // Perform action on click
+            }
+        });
     }
 
     @Override
@@ -58,6 +69,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         super.onPause();
         mSensorManager.unregisterListener(this);
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // can be safely ignored for this demo

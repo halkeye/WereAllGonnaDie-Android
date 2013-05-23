@@ -63,4 +63,9 @@
             android:id="@+id/image"
             android:layout_gravity="center"
             android:visibility="invisible"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Preferences"
+            android:id="@+id/btn_preferences" android:gravity="bottom" android:layout_gravity="bottom"/>
 </LinearLayout>

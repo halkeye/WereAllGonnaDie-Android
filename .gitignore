@@ -48,3 +48,4 @@ WereAllGonnaDie/build/
 *.war
 *.ear
 
+local.properties

@@ -2,6 +2,7 @@ package com.kodekoan.wereallgonnadie;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +49,11 @@ public class MainActivity extends Activity implements SensorEventListener {
                 // Perform action on click
             }
         });
+
+        SharedPreferences p = getSharedPreferences(getPackageName(), 0);
+
+        TextView sound_selectors = (TextView)findViewById(R.id.sound_selectors);
+        sound_selectors.setText(String.format("[%s]\n[%s]", p.getString("sound_file", "NONE"), p.getString("notification", "")));
     }
 
     @Override

@@ -7,23 +7,23 @@
         <CheckBoxPreference
                 android:key="checkbox_preference"
                 android:title="checkbox title"
-                android:summary="checkbox summary" />
+                android:summary="checkbox summary"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
             android:title="Launching Preferences">
 
-        <PreferenceScreen
-                android:title="Pref Screen Title">
-
-            <intent android:action="android.intent.action.ACTION_GET_CONTENT"
-                    android:data="audio/*" />
-
-        </PreferenceScreen>
+        <Preference
+                android:key="sound_file"
+                android:title="@string/select_sound_file_title"/>
+        <RingtonePreference
+                android:title="wazzup"
+                android:key="notification"
+                android:ringtoneType="all"
+                android:showDefault="true"
+                android:showSilent="false"/>
 
     </PreferenceCategory>
-
-
 
 </PreferenceScreen>

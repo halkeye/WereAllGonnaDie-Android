@@ -68,4 +68,11 @@
             android:layout_height="wrap_content"
             android:text="Preferences"
             android:id="@+id/btn_preferences" android:gravity="bottom" android:layout_gravity="bottom"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="----"
+        android:id="@+id/sound_selectors"
+        android:layout_gravity="center" />
 </LinearLayout>

@@ -1,0 +1,5 @@
+.gradle/
+.idea/
+WereAllGonnaDie/build/apk/WereAllGonnaDie-debug-unaligned.apk
+WereAllGonnaDie/build/libs/WereAllGonnaDie-debug.ap_
+WereAllGonnaDie/build/libs/WereAllGonnaDie-debug.dex

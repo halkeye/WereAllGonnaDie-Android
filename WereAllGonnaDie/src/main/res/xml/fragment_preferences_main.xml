@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:robobunny="http://robobunny.com" xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="Threshold">
+        <com.robobunny.SeekBarPreference
+                android:key="trigger_threshold"
+                android:title="Trigger Threshold"
+                android:summary="At what value does sound start playing"
+                android:defaultValue="40"
+                android:max="200"
+                robobunny:min="1"
+                />
+    </PreferenceCategory>
     <PreferenceCategory
             android:title="@string/inline_preferences">
 

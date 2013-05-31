@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         maven { url 'http://repo1.maven.org/maven2' }
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.4'
@@ -10,6 +11,9 @@ apply plugin: 'android'
 
 dependencies {
     compile files('libs/android-support-v4.jar')
+    // http://stackoverflow.com/questions/15173923/external-android-library-projects-with-gradle
+    //compile 'com.actionbarsherlock:actionbarsherlock:4.3.1'
+    //compile group: 'com.actionbarsherlock', name: 'actionbarsherlock', version: '4.3.1'
 }
 
 android {

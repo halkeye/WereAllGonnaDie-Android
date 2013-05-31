@@ -6,8 +6,8 @@
                 android:key="trigger_threshold"
                 android:title="Trigger Threshold"
                 android:summary="At what value does sound start playing"
-                android:defaultValue="40"
-                android:max="200"
+                android:defaultValue="4"
+                android:max="40"
                 robobunny:min="1"
                 />
     </PreferenceCategory>
